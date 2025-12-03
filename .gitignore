@@ -1,5 +1,6 @@
 /target/
-*.settings
-*.classpath
-*.project
-*.proporties
+.logs/
+.settings/
+/.classpath
+/.project
+*.properties
