@@ -9,35 +9,42 @@ import com.automation.e2eTests.utils.Setup;
 
 public class LoginPage extends BasePage {
 	/* Retrieve elementweblogin */
-	@FindBy(how = How.ID, using = "sign-in-email-input")
-	private static WebElement username;
+	@FindBy(how = How.ID, using = "user-name")
+	private static WebElement user;
 
-	@FindBy(how = How.ID, using = "sign-in-password-input")
-	private static WebElement password;
+	@FindBy(how = How.ID, using = "password")
+	private static WebElement pw;
 
-	@FindBy(how = How.ID, using = "button-container-softbox")
+	@FindBy(how = How.ID, using = "login-button")
 	private static WebElement btnlogin;
 	
-	@FindBy(how = How.XPATH, using = "//*[contains(normalize-space(text()),'Accéder à votre compte')]")
-	private static WebElement verifdeconnect;
+	@FindBy(how = How.XPATH, using = "//span[@class='title']")
+	private static WebElement title;
+
+	@FindBy(xpath = "//h3[@data-test='error']")
+	private static WebElement errormessage;
 
 	public LoginPage() {
 		super(Setup.getDriver());
 	}
 
 	public static WebElement getusername() {
-		return username;
+		return user;
 	}
 
 	public static WebElement getpassword() {
-		return password;
+		return pw;
 	}
-
 	public static WebElement getbtnlogin() {
 		return btnlogin;
 		
 	}
-	public static WebElement getverifdeconnect() {
-		return verifdeconnect;}
+	public static WebElement gettitle() {
+		return title ;
+		}
 	
+	public static WebElement geterrormessage() {
+		return errormessage ;
+		}
 }
+

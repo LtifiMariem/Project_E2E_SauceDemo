@@ -226,5 +226,11 @@ public class Validations extends BasePage {
 		String URL = driver.getCurrentUrl();
 		Assert.assertEquals(URL, expectedURL);
 	}
+	public void verifyCartBadgeCount(WebElement element, String expectedCount) {
+	    String actualCount = element.getText().trim();
+	    Assert.assertEquals("❌ Le nombre de produits dans le panier est incorrect :", expectedCount, actualCount);
+	}
+
 
 }
+

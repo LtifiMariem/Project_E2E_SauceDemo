@@ -12,7 +12,7 @@ import io.cucumber.junit.CucumberOptions;
 features = { "src/spec/features" }, 
 plugin = { "pretty", "html:target/report/cucumber-report.html","json:target/report/cucumber-report.json" },
 		// glue = {"/selenuim.cucumber/src/test/java/com/automation/e2eTests/step_definitions"},
-		tags = ("@logout"), 
+		tags = (""), 
 		monochrome = true, 
 		snippets = CAMELCASE
 )

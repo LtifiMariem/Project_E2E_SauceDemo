@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>selenuim-cucumber</groupId>
-  <artifactId>selenuim.cucumber</artifactId>
+  <artifactId>projetPipeline</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 

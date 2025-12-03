@@ -68,7 +68,7 @@ public class Setup {
 			chromeOptions.addArguments("--disable-logging");
 			chromeOptions.addArguments("--log-level=3");
 			chromeOptions.addArguments("--remote-debugging-pipe");
-
+			chromeOptions.addArguments("--incognito"); //pour navigateur privee
 //chromeOptions.addArguments("--headless=new");
 			chromeOptions.addArguments("force-device-scale-factor=0.75");
 			driver = new ChromeDriver(chromeOptions);
@@ -102,3 +102,4 @@ public class Setup {
 	}
 
 }
+
