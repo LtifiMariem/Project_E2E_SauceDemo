@@ -2,18 +2,18 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>selenuim-cucumber</groupId>
+  <groupId>projetPipeline</groupId>
   <artifactId>projetPipeline</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>selenuim.cucumber</name>
+  <name>projetPipeline</name>
   <url>http://maven.apache.org</url>
 
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<junit.version>5.8.2</junit.version>
 		<selenium.version>4.35.0</selenium.version>
 		<log4jcore.version>2.17.2</log4jcore.version>
