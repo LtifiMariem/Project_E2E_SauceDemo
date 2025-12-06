@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        cron('H/5 * * * *')   // Exécuter toutes les 5 minutes
+    }
+
     tools {
         maven 'MAVEN_HOME'
         jdk 'JAVA_HOME'
@@ -11,19 +15,20 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/TON-USERNAME/TON-REPO.git'
+                    url: 'https://github.com/LtifiMariem/Project_E2E_SauceDemo.git',
+                    credentialsId: 'github-token'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean install -DskipTests'
+                bat 'mvn clean install -DskipTests'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'mvn clean test'
+                bat 'mvn clean test'
             }
         }
 
@@ -36,8 +41,10 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'target/allure-results/**'
             junit 'target/surefire-reports/*.xml'
+            archiveArtifacts artifacts: 'target/allure-results/**', fingerprint: true
+            cleanWs()
         }
     }
 }
+
