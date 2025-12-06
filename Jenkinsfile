@@ -7,8 +7,8 @@ pipeline {
     }
 
     tools {
-        maven 'MAVEN_HOME'
-        jdk 'JAVA_HOME'
+        maven 'Maven'
+        jdk 'JDK'
     }
 
     stages {
@@ -42,16 +42,9 @@ pipeline {
 
     post {
         always {
-            // Récupérer les rapports JUnit
             junit 'target/surefire-reports/*.xml'
-
-            // Archiver les résultats Allure dans Jenkins
             archiveArtifacts artifacts: 'target/allure-results/**', fingerprint: true
-
-            // Nettoyer le workspace
             cleanWs()
         }
     }
 }
-
-
