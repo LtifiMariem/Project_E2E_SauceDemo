@@ -16,7 +16,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/LtifiMariem/Project_E2E_SauceDemo.git',
-                    branch: 'main',
+                    branch: 'master',
                     credentialsId: 'github-token'
             }
         }
