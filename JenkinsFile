@@ -1,20 +1,21 @@
 pipeline {
     agent any // Utilise n'importe quel agent disponible pour exécuter le pipeline
 
-    // Déclenchement automatique
-    //triggers {
-       // cron('* * * * *') //exécute tous les jours à 20:30
-   // }
+     Déclenchement automatique
+    triggers {
+       cron('* * * * *') //exécute tous les jours à 20:30
+   }
 
     environment {
         // Définir le JAVA_HOME si besoin
-JAVA_HOME = 'C:\\Program Files\\Java\\jdk-17'
+JAVA_HOME = 'C:/Program Files/Java/jdk-17'
 
 // Définir le MAVEN_HOME si tu utilises Maven
-MAVEN_HOME = 'C:\Users\Administrator\apache-maven-3.9.11\bin'
+MAVEN_HOME = 'C:/Users/Administrator/apache-maven-3.9.11'
+
 
 // Définir le PATH avec les bons séparateurs
-PATH = "${JAVA_HOME}\\bin;${MAVEN_HOME}\\bin;${env.PATH}"
+PATH = "${JAVA_HOME}/bin;${MAVEN_HOME}/bin;${env.PATH}"
 
     }
 
