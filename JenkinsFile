@@ -1,26 +1,26 @@
 pipeline {
-    agent any // Utilise n'importe quel agent disponible pour exécuter le pipeline
+    agent any 
 
-     Déclenchement automatique
+    
     triggers {
-       cron('* * * * *') //exécute tous les jours à 20:30
+       cron('* * * * *') 
    }
 
     environment {
-        // Définir le JAVA_HOME si besoin
+        
 JAVA_HOME = 'C:/Program Files/Java/jdk-17'
 
-// Définir le MAVEN_HOME si tu utilises Maven
+
 MAVEN_HOME = 'C:/Users/Administrator/apache-maven-3.9.11'
 
 
-// Définir le PATH avec les bons séparateurs
+
 PATH = "${JAVA_HOME}/bin;${MAVEN_HOME}/bin;${env.PATH}"
 
     }
 
     stages {
-        // Étape 1 : Récupérer le code depuis GitHub
+        
         stage('Checkout') {
             steps {
                 git branch: 'master', 
@@ -29,11 +29,10 @@ PATH = "${JAVA_HOME}/bin;${MAVEN_HOME}/bin;${env.PATH}"
             }
         }
 
-        // Étape 2 : Compiler / construire le projet
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                bat 'mvn clean compile' // ou 'mvn clean install' selon ton besoin
+                bat 'mvn clean compile' 
             }
         }
 
