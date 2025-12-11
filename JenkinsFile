@@ -2,9 +2,9 @@ pipeline {
     agent any // Utilise n'importe quel agent disponible pour exécuter le pipeline
 
     // Déclenchement automatique
-    triggers {
-        cron('30 20 * * *') //exécute tous les jours à 20:30
-    }
+    //triggers {
+       // cron('* * * * *') //exécute tous les jours à 20:30
+   // }
 
     environment {
         // Définir le JAVA_HOME si besoin
@@ -24,7 +24,7 @@ PATH = "${JAVA_HOME}\\bin;${MAVEN_HOME}\\bin;${env.PATH}"
             steps {
                 git branch: 'master', 
                     url: 'https://github.com/LtifiMariem/Project_E2E_SauceDemo.git', 
-                    credentialsId: 'github-token' // ID du credential créé dans Jenkins
+                    credentialsId: 'jeton GitHub' // ID du credential créé dans Jenkins
             }
         }
 
