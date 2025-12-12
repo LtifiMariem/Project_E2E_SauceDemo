@@ -1,76 +1,75 @@
 pipeline {
     agent any 
-
     
-    triggers {
-       cron('H * * * *') 
-   }
+     tools {
+        jdk 'JDK'          
+        maven 'Maven'      
+    }
 
     environment {
-        
-JAVA_HOME = 'C:/Program Files/Java/jdk-17'
+        HOME_URL = 'https://www.saucedemo.com/'
+        HOME_CREDENTIALS = credentials('saucedemo-creds') 
+    }
 
-
-MAVEN_HOME = 'C:/Users/Administrator/apache-maven-3.9.11'
-
-
-
-PATH = "${JAVA_HOME}/bin;${MAVEN_HOME}/bin;${env.PATH}"
-
+    triggers {
+        cron('H * * * *')
     }
 
     stages {
-        
         stage('Checkout') {
             steps {
                 git branch: 'master', 
                     url: 'https://github.com/LtifiMariem/Project_E2E_SauceDemo.git', 
-                    credentialsId: 'jeton GitHub' // ID du credential créé dans Jenkins
-            }
-        }
-stage('Prepare Resources') {
-    steps {
-        echo 'Copying test resources...'
-        bat 'xcopy src\\test\\resources target\\test-classes /E /I /Y /R'
-
-    }
-}
-
-
-        stage('Build') {
-            steps {
-                echo 'Building the project...'
-                bat 'mvn clean compile' 
+                    credentialsId: 'jeton GitHub'
             }
         }
 
-        // Étape 3 : Lancer les tests automatisés
-        stage('Run Tests') {
+        stage('Create properties file') {
             steps {
-                echo 'Running tests...'
-                bat 'mvn test'
+                echo "Creating env-config.properties ..."
+
+                // Créer dossier s'il n'existe pas
+                bat 'mkdir src\\test\\resources\\configs 2>nul'
+
+                bat """
+echo url=%HOME_URL%> src\\test\\resources\\configs\\env-config.properties
+echo username=%HOME_CREDENTIALS_USR%>> src\\test\\resources\\configs\\env-config.properties
+echo password=%HOME_CREDENTIALS_PSW%>> src\\test\\resources\\configs\\env-config.properties
+                """
+
+                // Afficher contenu pour vérification
+                bat 'type src\\test\\resources\\configs\\env-config.properties'
             }
         }
 
-        // Étape 4 : Publier les rapports (exemple pour Cucumber)
-        stage('Publish Reports') {
+        stage('Run Maven Tests') {
             steps {
-                echo 'Publishing Cucumber report...'
-                // Si tu utilises le plugin cucumber-reporting
-                cucumber buildStatus: 'UNSTABLE', fileIncludePattern: 'target/report/cucumber.json'
+                echo "Running Maven tests..."
+                bat 'mvn clean test verify'
+            }
+        }
+
+        stage('Generate Cucumber Report') {
+            steps {
+                echo 'Maven will generate the Cucumber HTML report (plugin in pom.xml)'
+            }
+        }
+
+        stage('Publish Cucumber Report') {
+            steps {
+                publishHTML(target: [
+                    reportDir: 'target/report',
+                    reportFiles: 'cucumber-report.html',
+                    reportName: 'Cucumber Report'
+                ])
             }
         }
     }
 
     post {
         always {
-            echo 'Cleaning workspace...' 
-        }
-        success {
-            echo 'Tests passed!' 
-        }
-        failure {
-            echo 'Tests failed!' 
+            echo "Deleting env-config.properties for security..."
+            bat 'del /f /q src\\test\\resources\\configs\\env-config.properties'
         }
     }
 }
