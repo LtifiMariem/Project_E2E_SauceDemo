@@ -29,7 +29,8 @@ pipeline {
                 echo "Creating env-config.properties ..."
 
                 // Créer dossier s'il n'existe pas
-                bat 'mkdir src\\test\\resources\\configs 2>nul'
+                bat 'if not exist src\\test\\resources\\configs mkdir src\\test\\resources\\configs'
+
 
                 bat """
 echo url=%HOME_URL%> src\\test\\resources\\configs\\env-config.properties
