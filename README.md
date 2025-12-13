@@ -112,5 +112,78 @@ Date management
 - Browser drivers (e.g. ChromeDriver, GeckoDriver, EdgeDriver)
 - IDE ( Eclipse with Java )
 
+## 🔄 CI/CD Integration – Jenkins Pipeline
+
+This project is fully integrated with a **Jenkins Declarative Pipeline** to enable continuous and automated testing.
+
+### ⚙️ Jenkins Pipeline Capabilities
+✔ Automated build and test execution  
+✔ Environment configuration generated at runtime  
+✔ Secure credentials handling (Jenkins Credentials)  
+✔ Maven test execution (`mvn clean test`)  
+✔ Automatic Cucumber HTML report generation  
+✔ Post-build cleanup for sensitive files  
+
 ---
+
+## 📊 Cucumber Test Reports
+
+After each pipeline execution, a **Cucumber HTML report** is generated and published by Jenkins.
+
+### 📁 Report Location
+```text
+target/report/index.html
+🔍 How to Access the Report in Jenkins
+Open the Jenkins job
+
+Click on Last Successful Build
+
+Select Cucumber Report
+
+📌 Reports include:
+
+Scenario status (Passed / Failed)
+
+Step-by-step execution details
+
+Execution time
+
+Error stack traces
+
+⏱️ Job Scheduling (Cron)
+The Jenkins job is automatically triggered using a Cron Scheduler.
+
+🕒 Schedule Configuration
+text
+Copy code
+H */5 * * *
+✔ Runs the pipeline every 5 hours
+✔ Optimized load distribution using Jenkins hash (H)
+✔ Ensures regular regression testing
+
+🧪 Jenkins Build Status
+🚦 Pipeline Status Badge
+md
+Copy code
+![Jenkins Build Status](http://<JENKINS_URL>/job/<JOB_NAME>/badge/icon)
+🔧 Example
+md
+Copy code
+![Build Status](http://localhost:8080/job/demo-sauce-pipeline/badge/icon)
+🔐 Environment Configuration (CI)
+Environment-specific data is dynamically created during the Jenkins build.
+
+✔ env-config.properties generated at runtime
+✔ Sensitive data managed via Jenkins Credentials
+✔ File removed automatically after execution
+
+📌 This ensures:
+
+No secrets stored in Git
+
+Secure and portable CI execution
+
+📌 Supported CI Environments
+✔ Jenkins (Fully implemented)
+✔ GitHub Actions (Ready / Optional)
 
