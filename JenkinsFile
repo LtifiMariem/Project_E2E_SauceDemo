@@ -33,13 +33,13 @@ pipeline {
 
 
                 bat """
-echo url=%HOME_URL%> src\\test\\resources\\configs\\env-config.properties
-echo username=%HOME_CREDENTIALS_USR%>> src\\test\\resources\\configs\\env-config.properties
-echo password=%HOME_CREDENTIALS_PSW%>> src\\test\\resources\\configs\\env-config.properties
+echo url=%HOME_URL%> src\\test\\resources\\configs\\env_config.properties
+echo username=%HOME_CREDENTIALS_USR%>> src\\test\\resources\\configs\\env_config.properties
+echo password=%HOME_CREDENTIALS_PSW%>> src\\test\\resources\\configs\\env_config.properties
                 """
 
                 // Afficher contenu pour vérification
-                bat 'type src\\test\\resources\\configs\\env-config.properties'
+                bat 'type src\\test\\resources\\configs\\env_config.properties'
             }
         }
 
@@ -70,7 +70,7 @@ echo password=%HOME_CREDENTIALS_PSW%>> src\\test\\resources\\configs\\env-config
     post {
         always {
             echo "Deleting env-config.properties for security..."
-            bat 'del /f /q src\\test\\resources\\configs\\env-config.properties'
+            bat 'del /f /q src\\test\\resources\\configs\\env_config.properties'
         }
     }
 }
