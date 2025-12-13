@@ -33,9 +33,9 @@ pipeline {
 
 
                 bat """
-echo home.url=%HOME_URL%> src\\test\\resources\\configs\\env-config.properties
-echo home.username=%HOME_CREDENTIALS_USR%>> src\\test\\resources\\configs\\env-config.properties
-echo home.password=%HOME_CREDENTIALS_PSW%>> src\\test\\resources\\configs\\env-config.properties
+echo home.url=%HOME_URL%> src\\test\\resources\\configs\\env_config.properties
+echo home.username=%HOME_CREDENTIALS_USR%>> src\\test\\resources\\configs\\env_config.properties
+echo home.password=%HOME_CREDENTIALS_PSW%>> src\\test\\resources\\configs\\env_config.properties
 
                 """
 
